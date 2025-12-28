@@ -26,7 +26,7 @@ end
 -- -------------------------
 -- 補助：ファイルから n 行ランダム抽出 → 整形して文字列に
 -- -------------------------
-local function pick_lines(path, n)
+function M.pick_lines(path, n)
   n = n or config.n or 5
   if not path or path == "" then
     return nil, "path が未設定です (setup{ path=... } が必要)"
@@ -80,3 +80,9 @@ local function pick_lines(path, n)
 
   return table.concat(out2, "\n")
 end
+
+function M.setup(opts)
+  config = vim.tbl_deep_extend("force", config, opts or {})
+end
+
+return M
